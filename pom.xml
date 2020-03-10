@@ -49,11 +49,11 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
-       <!-- <dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-maven-plugin</artifactId>
             <version>3.0</version>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
