@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS PUBLIC.scp01_projeto
 (
     scp01_cod_projeto      SERIAL NOT NULL,
-    scp01_titulo           VARCHAR(255),
-    scp01_previsao_entrega DATE,
+    scp01_titulo           VARCHAR(255) NOT NULL,
+    scp01_previsao_entrega DATE NOT NULL,
 
     CONSTRAINT pkscp01_cod_projeto PRIMARY KEY (scp01_cod_projeto)
 );

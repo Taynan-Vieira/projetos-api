@@ -29,20 +29,4 @@ public class Tarefa implements Serializable {
 	@JoinColumn(name = "fkscp02scp01_cod_projeto")
 	@ManyToOne
 	private Projeto projeto;
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Tarefa tarefa = (Tarefa) o;
-		return id.equals(tarefa.id);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
 }

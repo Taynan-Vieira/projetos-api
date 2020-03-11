@@ -30,20 +30,4 @@ public class Projeto implements Serializable {
 	@Column(name = "scp01_previsao_entrega")
 	@NotNull
 	private LocalDate previsaoEntrega;
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Projeto projeto = (Projeto) o;
-		return id.equals(projeto.id);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
 }

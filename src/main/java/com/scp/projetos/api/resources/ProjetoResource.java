@@ -19,10 +19,10 @@ import java.util.Optional;
 public class ProjetoResource {
 
 	@Autowired
-	private transient ProjetoRepository projetoRepository;
+	private ProjetoRepository projetoRepository;
 
 	@Autowired
-	private transient ProjetoService projetoService;
+	private ProjetoService projetoService;
 
 	@GetMapping
 	public Page<Projeto> listarProjetos(Pageable pageable) {
@@ -36,9 +36,8 @@ public class ProjetoResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Projeto> salvarProjeto(@Valid @RequestBody Projeto projeto, HttpServletResponse response) {
-		Projeto projetoSalvo = projetoService.salvarProjeto(projeto);
-		return ResponseEntity.status(HttpStatus.CREATED).body(projetoSalvo);
+	public ResponseEntity<Projeto> salvarProjeto(@Valid @RequestBody Projeto projeto) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(projetoService.salvarProjeto(projeto));
 	}
 
 	@DeleteMapping("/{id}")
@@ -49,8 +48,7 @@ public class ProjetoResource {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Projeto> atualizar(@PathVariable Long id, @Valid @RequestBody Projeto projeto) {
-		Projeto projetoSalvo = projetoService.atualizarProjeto(id, projeto);
-		return ResponseEntity.ok(projetoSalvo);
+		return ResponseEntity.ok(projetoService.atualizarProjeto(id, projeto));
 	}
 
 }

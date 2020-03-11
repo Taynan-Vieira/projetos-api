@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS PUBLIC.scp02_tarefa
 (
     scp02_cod_tarefa SERIAL NOT NULL,
-    scp02_titulo     VARCHAR(255),
+    scp02_titulo     VARCHAR(255) NOT NULL,
     fkscp02scp01_cod_projeto BIGINT,
 
     CONSTRAINT pkscp02_cod_tarefa PRIMARY KEY (scp02_cod_tarefa),

@@ -9,10 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,10 +22,10 @@ import java.util.Optional;
 public class TarefasResource {
 
 	@Autowired
-	private transient TarefaRepository tarefaRepository;
+	private TarefaRepository tarefaRepository;
 
 	@Autowired
-	private transient TarefaService tarefaService;
+	private TarefaService tarefaService;
 
 	@GetMapping
 	public Page<Tarefa> listarProjetos(Pageable pageable) {
@@ -32,14 +34,18 @@ public class TarefasResource {
 
 	@GetMapping("/{id}")
 	public ResponseEntity buscarPorCodigo(@PathVariable Long id) {
-		Optional tarefa = this.tarefaRepository.findById(id);
-		return tarefa.isPresent() ? ResponseEntity.ok(tarefa.get()) : ResponseEntity.notFound().build();
+		return tarefaRepository.findById(id).map(t -> ResponseEntity.ok(t)).orElse(ResponseEntity.notFound().build());
+	}
+
+	@GetMapping("/titulo/{titulo}")
+	public ResponseEntity buscarPorTarefa(@PathVariable String titulo) {
+		List<Tarefa> tarefas = tarefaService.buscaTarefaPorTitulo(titulo);
+		return tarefas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(tarefas);
 	}
 
 	@PostMapping
-	public ResponseEntity<Tarefa> salvarTarefa(@Valid @RequestBody Tarefa tarefa, HttpServletResponse response) {
-		Tarefa tarefaSalva = tarefaService.salvarTarefa(tarefa);
-		return ResponseEntity.status(HttpStatus.CREATED).body(tarefaSalva);
+	public ResponseEntity<Tarefa> salvarTarefa(@Valid @RequestBody Tarefa tarefa) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(tarefaService.salvarTarefa(tarefa));
 	}
 
 	@DeleteMapping("/{id}")
@@ -47,4 +53,10 @@ public class TarefasResource {
 	public void excluirTarefa(@PathVariable Long id) {
 		this.tarefaRepository.deleteById(id);
 	}
+
+	/*@PutMapping("/{id}")
+	public ResponseEntity<Projeto> atualizar(@PathVariable Long id, @Valid @RequestBody Projeto projeto) {
+		Tarefa tarefaSalva = tarefaService.atualizarTarefa(id, projeto);
+		return ResponseEntity.ok(projetoSalvo);
+	}*/
 }
