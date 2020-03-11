@@ -3,6 +3,7 @@ package com.scp.projetos.api.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class Projeto implements Serializable {
 	private Long id;
 
 	@Column(name = "scp01_titulo")
+	@NotEmpty
 	@NotNull
 	private String titulo;
 
