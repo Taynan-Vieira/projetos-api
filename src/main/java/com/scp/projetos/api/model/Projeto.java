@@ -18,6 +18,7 @@ public class Projeto implements Serializable {
 	@Id
 	@Column(name = "scp01_cod_projeto")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private Long id;
 
 	@Column(name = "scp01_titulo")

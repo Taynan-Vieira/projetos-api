@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ProjetoService {
 
 	@Autowired
-	private ProjetoRepository projetoRepository;
+	private transient ProjetoRepository projetoRepository;
 
 	public Projeto atualizarProjeto(Long id, Projeto projeto) {
 		Projeto projetoSalvo = buscaProjetoPorCodigo(id);
@@ -26,5 +26,12 @@ public class ProjetoService {
 		Optional<Projeto> projetoSalvo = Optional.ofNullable(projetoRepository.findById(id))
 				.orElseThrow(() -> new EmptyResultDataAccessException(1));
 		return projetoSalvo.get();
+	}
+
+	public Projeto salvarProjeto(Projeto projeto){
+		if(!projetoRepository.buscarProjetoPorDescricao(projeto.getTitulo()).isPresent()){
+			return projetoRepository.save(projeto);
+		}
+		throw new IllegalArgumentException("Projeto já cadastrado.");
 	}
 }

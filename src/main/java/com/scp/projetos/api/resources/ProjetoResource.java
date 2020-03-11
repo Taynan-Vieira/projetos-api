@@ -19,14 +19,14 @@ import java.util.Optional;
 public class ProjetoResource {
 
 	@Autowired
-	private ProjetoRepository projetoRepository;
+	private transient ProjetoRepository projetoRepository;
 
 	@Autowired
-	private ProjetoService projetoService;
+	private transient ProjetoService projetoService;
 
 	@GetMapping
 	public Page<Projeto> listarProjetos(Pageable pageable) {
-		return projetoRepository.findAll(pageable);
+		return projetoRepository.listarPorPrevisaoDeEntrega(pageable);
 	}
 
 	@GetMapping("/{id}")
@@ -37,7 +37,7 @@ public class ProjetoResource {
 
 	@PostMapping
 	public ResponseEntity<Projeto> criarProjeto(@Valid @RequestBody Projeto projeto, HttpServletResponse response) {
-		Projeto projetoSalvo = projetoRepository.save(projeto);
+		Projeto projetoSalvo = projetoService.salvarProjeto(projeto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(projetoSalvo);
 	}
 
