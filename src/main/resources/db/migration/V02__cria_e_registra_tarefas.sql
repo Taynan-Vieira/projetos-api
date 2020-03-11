@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS PUBLIC.scp02_tarefa
 (
     scp02_cod_tarefa SERIAL NOT NULL,
     scp02_titulo     VARCHAR(255),
-    fkscp02scp01_cod_projeto BIGINT NOT NULL,
+    fkscp02scp01_cod_projeto BIGINT,
 
     CONSTRAINT pkscp02_cod_tarefa PRIMARY KEY (scp02_cod_tarefa),
     CONSTRAINT fkscp02scp01_cod_projeto FOREIGN KEY (fkscp02scp01_cod_projeto)
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS PUBLIC.scp02_tarefa
 INSERT INTO scp02_tarefa (scp02_titulo, fkscp02scp01_cod_projeto)
 VALUES ('LEVANTAMENTO DE REQUISITOS', 1),
        ('DEFINICAO DO DER', 1),
-       ('DENICAO DO DIAGRAMA DE CLASSES', 2),
+       ('DEFINICAO DO DIAGRAMA DE CLASSES', 2),
        ('DEFINICAO DO FLUXOGRAMA', 2),
        ('DEFINICAO DAS TAREFAS', 3),
        ('CRIACAO DO PROJETO', 3),

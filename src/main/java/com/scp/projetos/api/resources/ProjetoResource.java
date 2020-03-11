@@ -36,14 +36,14 @@ public class ProjetoResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Projeto> criarProjeto(@Valid @RequestBody Projeto projeto, HttpServletResponse response) {
+	public ResponseEntity<Projeto> salvarProjeto(@Valid @RequestBody Projeto projeto, HttpServletResponse response) {
 		Projeto projetoSalvo = projetoService.salvarProjeto(projeto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(projetoSalvo);
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void removerProjeto(@PathVariable Long id) {
+	public void excluirProjeto(@PathVariable Long id) {
 		this.projetoRepository.deleteById(id);
 	}
 

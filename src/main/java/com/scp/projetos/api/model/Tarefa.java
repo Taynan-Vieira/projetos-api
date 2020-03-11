@@ -3,6 +3,7 @@ package com.scp.projetos.api.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
@@ -17,13 +18,15 @@ public class Tarefa implements Serializable {
 	@Id
 	@Column(name = "scp02_cod_tarefa")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private Long id;
 
 	@Column(name = "scp02_titulo")
+	@NotEmpty
 	@NotNull
 	private String titulo;
 
-	@JoinColumn(name = "fkscp02scp01_cod_tarefa")
+	@JoinColumn(name = "fkscp02scp01_cod_projeto")
 	@ManyToOne
 	private Projeto projeto;
 

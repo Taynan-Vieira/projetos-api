@@ -29,7 +29,8 @@ public class ProjetoService {
 	}
 
 	public Projeto salvarProjeto(Projeto projeto){
-		if(!projetoRepository.buscarProjetoPorDescricao(projeto.getTitulo()).isPresent()){
+		if(!projetoRepository.buscarProjetoPorTitulo(projeto.getTitulo()).isPresent()){
+			projeto.setTitulo(projeto.getTitulo().toUpperCase());
 			return projetoRepository.save(projeto);
 		}
 		throw new IllegalArgumentException("Projeto já cadastrado.");
