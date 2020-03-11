@@ -54,9 +54,9 @@ public class TarefasResource {
 		this.tarefaRepository.deleteById(id);
 	}
 
-	/*@PutMapping("/{id}")
-	public ResponseEntity<Projeto> atualizar(@PathVariable Long id, @Valid @RequestBody Projeto projeto) {
-		Tarefa tarefaSalva = tarefaService.atualizarTarefa(id, projeto);
-		return ResponseEntity.ok(projetoSalvo);
-	}*/
+	@PutMapping("/{id}")
+	public ResponseEntity<Tarefa> atualizar(@PathVariable Long id, @Valid @RequestBody Tarefa tarefa) {
+		Tarefa tarefaSalva = tarefaService.atualizarTarefa(id, tarefa);
+		return ResponseEntity.ok(tarefaSalva);
+	}
 }
