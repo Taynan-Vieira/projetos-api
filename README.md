@@ -8,11 +8,19 @@ Tecnologias:
     * Maven
     * PostgreSQL 12
 
+
 Execução do projeto:
 -------------
+
 Requisitos necessários:
 * 1- Maven 3.6.3 (Ou superior)
 * 2- Java 8 (Ou superior)
+* 3- PostgreSQL 12 (Ou superior)
+
+Configuração do Banco:
+* 1- Criar um banco com o nome: projetosapi
+* 2- Usuário: postgres
+* 3- Senha: root
 
 Deploy do projeto:
 * 1- Na raíz do projeto, excecutar o seguinte comando: mvn clean install

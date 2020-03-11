@@ -1,16 +1,13 @@
 package com.scp.projetos.api.service;
 
-import com.scp.projetos.api.model.Projeto;
 import com.scp.projetos.api.model.Tarefa;
 import com.scp.projetos.api.repository.TarefaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
